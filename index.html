@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="style.css" />
+<link rel="stylesheet" href="style-min.css" />
+<script src="script-1.js"></script>
+<script src="script-2.js"></script>
+<script type="text/javascript" src="google.js"></script>	
+</head>
+<body>
+
+<!-- Стартовая страница-->
+<div data-role="page" id="index">
+<div data-role="content">
+<center>
+<div data-role="controlgroup" data-type="horizontal">
+<a href="#maps" data-role="button">Maps</a>
+<a href="#chat" data-role="button">Chat</a>
+<a href="#news" data-role="button">News</a>
+</div></center><br>
+<center>
+<img src="image.jpg" width="280" height="300">
+</center>
+</div>
+</div> 
+
+<!-- Блок Карты -->
+<div data-role="page" id="maps">
+<div data-role="content">
+<center>
+<div data-role="controlgroup" data-type="horizontal">
+<a href="#index" data-role="button">Back</a>
+<button id="map_reload">Reload</button>
+</div></center><br>
+<center>
+	<script type="text/javascript">
+	function initialize() {
+	var lat;
+	var lon;
+	navigator.geolocation.getCurrentPosition(function(position){
+					lat = position.coords.latitude;
+					lon = position.coords.longitude;
+					var myLatlng = new google.maps.LatLng(lat, lon);
+					var myOptions = {
+						zoom: 15,
+						center: myLatlng,
+						mapTypeId: google.maps.MapTypeId.SATELLITE
+						}
+					var map = new google.maps.Map(document.getElementById("canv-map"), myOptions);
+					var marker = new google.maps.Marker({
+						position: myLatlng,
+						map: map,
+						title:"Hello World!" 
+						});
+					});
+     
+
+}
+		</script>
+<div id="canv-map"></div>
+</center>
+<script>
+$("#map_reload").click(function(){
+initialize();
+});
+</script>
+</div>
+</div>
+  
+<!-- Блок Чата -->
+<div data-role="page" id="chat">
+<div data-role="content">
+<center>
+<div data-role="controlgroup" data-type="horizontal">
+<a href="#index" data-role="button">Back</a>
+<button id="send">Send</button>
+<button id="reload"><0></button>
+</div></center><br>
+<center>
+<input type="text" name="mes1" id="mes" placeholder="Сообщение..."><br>
+<div id="mess">
+</div>
+</center>
+<script type="text/javascript">
+$("#reload").click(function(){
+$("#mess").load("chat.txt");
+});
+$("#send").click(function(){
+  var m = $("#mes").val();
+  $.get('chat.php?mes1='+m+'', function(data){
+  $("#mes").val(' ');
+  $("#mess").load("chat.txt");
+  });
+});
+$("#mess").load("chat/chat.txt");
+var div = $("#mess");
+div.scrollTop(div.prop('scrollHeight'));
+
+ </script>
+</div>
+</div>
+  
+  <!-- Блок Новостей -->
+<div data-role="page" id="news">
+<div data-role="content">
+<center>
+<div data-role="controlgroup" data-type="horizontal">
+<a href="#maps" data-role="button">Maps</a>
+<a href="#chat" data-role="button">Chat</a>
+<a href="#news" data-role="button">News</a>
+</div></center><br>
+<center>
+<div id="m_news">
+</div>
+</center>
+<script type="text/javascript">
+$("#m_news").load("news.txt");
+ </script>
+</div>
+ </div>
+ 
+ 
+</body>
+</html>

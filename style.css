@@ -1,0 +1,28 @@
+#mess{
+width:280px;
+height:250px;
+border:1px solid #000000;
+overflow: auto;
+background: #272D6B;
+}
+#m_news{
+width:280px;
+height:300px;
+border:1px solid #000000;
+overflow: auto;
+background: #272D6B;
+}
+#canv-map{
+width:280px;
+height:300px;
+border:1px solid #000000;
+overflow: auto;
+background: #272D6B;
+}
+
+/*Стили для сообщений чата */
+.message{border: 1px solid #ccc; background: #828282; padding: 10px; color: #000000; margin: 10px}
+.message span  {color: #ffffff; font-size: 25px; display: block}
+/*Стили для новостей */
+.newsm{border: 1px solid #ccc; background: #828282; padding: 10px; color: #000000; margin: 10px}
+.newsm span  {color: #ffffff; font-size: 10px; display: block}
